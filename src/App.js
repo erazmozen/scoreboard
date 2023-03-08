@@ -10,7 +10,7 @@ function App() {
 
   return (
     <div>
-      <LiveScore games={games} />
+      <LiveScore gameStatus={gameStatus} games={games} />
       <Summary />
     </div>
   );
