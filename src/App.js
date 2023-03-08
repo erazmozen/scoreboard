@@ -20,6 +20,8 @@ function App() {
     }, duration);
   }
 
+  console.log("Games", games);
+
   return (
     <div>
       <LiveScore
@@ -27,7 +29,7 @@ function App() {
         gameStatus={gameStatus}
         games={games}
       />
-      <Summary />
+      <Summary games={games} />
     </div>
   );
 }
