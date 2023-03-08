@@ -1,7 +1,11 @@
 const Summary = ({ games }) => {
-  const sortedGames = [...games].sort(
-    (a, b) => b.gameTotalScore - a.gameTotalScore
-  );
+  const sortedGames = [...games].sort((a, b) => {
+    if (b.gameTotalScore == a.gameTotalScore) {
+      return b.gameEndedTime - a.gameEndedTime;
+    } else {
+      return b.gameTotalScore - a.gameTotalScore;
+    }
+  });
   console.log("Sorted games", sortedGames);
   return (
     <div className="summary">
@@ -11,7 +15,6 @@ const Summary = ({ games }) => {
           <div key={game.id}>
             <p>{game.teamHome.team} vs</p>
             <p>{game.teamAway.team}</p>
-            <p></p>
             <p>{game.teamHome.score}</p>
             <p>{game.teamAway.score}</p>
             <h4>Total: {game.gameTotalScore}</h4>
