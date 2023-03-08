@@ -12,16 +12,21 @@ function Game({ game }) {
   );
 }
 
-const LiveScore = ({ games, gameStatus }) => {
+const LiveScore = ({ games, gameStatus, startGames }) => {
   return (
     <div>
       <h1>LiveScore</h1>
       {!gameStatus ? (
-        <h2>Click to start games</h2>
+        <h2 onClick={() => startGames()}>
+          Click to start games
+        </h2>
       ) : (
-        games.map((game) => {
-          return <Game key={game.id} game={game} />;
-        })
+        <div>
+          <h2>Current games</h2>
+          {games.map((game) => {
+            return <Game key={game.id} game={game} />;
+          })}
+        </div>
       )}
     </div>
   );

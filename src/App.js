@@ -8,9 +8,25 @@ function App() {
   const [gameStatus, setGameStatus] = useState(false);
   const [games, setGames] = useState(data);
 
+  function startGames(duration = 5000) {
+    console.log("Starting games");
+    setGameStatus((prev) => !prev);
+
+    setGames(data);
+
+    setTimeout(() => {
+      setGameStatus(false);
+      console.log("Ending games");
+    }, duration);
+  }
+
   return (
     <div>
-      <LiveScore gameStatus={gameStatus} games={games} />
+      <LiveScore
+        startGames={startGames}
+        gameStatus={gameStatus}
+        games={games}
+      />
       <Summary />
     </div>
   );
