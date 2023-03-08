@@ -14,7 +14,7 @@ function App() {
   const [gameStatus, setGameStatus] = useState(false);
   const [games, setGames] = useState(lStorageData ?? data);
 
-  function startGames(duration = 5000) {
+  function startGames(duration = 10000) {
     console.log("Starting games");
     setGameStatus((prev) => !prev);
 
@@ -22,8 +22,25 @@ function App() {
 
     setGames(data);
 
+    const randomUpdateOne = setInterval(() => {
+      updateScoreAway(1);
+      updateScoreHome(2);
+    }, Math.floor(Math.random() * duration) + 1);
+    const randomUpdateTwo = setInterval(() => {
+      updateScoreAway(1);
+      updateScoreAway(2);
+    }, Math.floor(Math.random() * duration) + 1);
+    const randomUpdateThree = setInterval(() => {
+      updateScoreHome(1);
+      updateScoreAway(3);
+    }, Math.floor(Math.random() * duration) + 1);
+
     setTimeout(() => {
       setGameStatus(false);
+
+      clearInterval(randomUpdateOne);
+      clearInterval(randomUpdateTwo);
+      clearInterval(randomUpdateThree);
 
       console.log("Ending games");
     }, duration);
