@@ -8,7 +8,7 @@ const LiveScore = ({
   updateScoreAway,
 }) => {
   return (
-    <div>
+    <div className="livescore">
       <h1>LiveScore</h1>
       {!gameStatus ? (
         <h2 onClick={() => startGames()}>
