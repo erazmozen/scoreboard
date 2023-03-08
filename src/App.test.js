@@ -1,8 +1,16 @@
-import { render, screen } from '@testing-library/react';
-import App from './App';
+import { render, screen } from "@testing-library/react";
+import App from "./App";
+import LiveScore from "./components/LiveScore";
+import Summary from "./components/Summary";
 
-test('renders learn react link', () => {
-  render(<App />);
-  const linkElement = screen.getByText(/learn react/i);
-  expect(linkElement).toBeInTheDocument();
+test("correct title for livescore", () => {
+  render(<LiveScore />);
+  const text = screen.getByText("LiveScore");
+  expect(text).toBeInTheDocument();
+});
+
+test("correct title for summary", () => {
+  render(<Summary />);
+  const text = screen.getByText("Summary");
+  expect(text).toBeInTheDocument();
 });
