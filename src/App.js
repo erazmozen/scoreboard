@@ -1,16 +1,24 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import "./App.css";
 import LiveScore from "./components/LiveScore";
 import Summary from "./components/Summary";
 import { data } from "./data/data";
 
 function App() {
+  const [round, setRound] = useState(0);
+
+  const lStorageData = JSON.parse(
+    localStorage.getItem(`games-data-${round}`)
+  );
+
   const [gameStatus, setGameStatus] = useState(false);
-  const [games, setGames] = useState(data);
+  const [games, setGames] = useState(lStorageData ?? data);
 
   function startGames(duration = 5000) {
     console.log("Starting games");
     setGameStatus((prev) => !prev);
+
+    setRound((prev) => prev + 1);
 
     setGames(data);
 
@@ -54,6 +62,13 @@ function App() {
       )
     );
   }
+
+  useEffect(() => {
+    window.localStorage.setItem(
+      `games-data-${round}`,
+      JSON.stringify(games)
+    );
+  }, [gameStatus]);
 
   console.log("Games", games);
 
