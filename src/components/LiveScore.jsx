@@ -1,6 +1,12 @@
 import Game from "./Game";
 
-const LiveScore = ({ games, gameStatus, startGames }) => {
+const LiveScore = ({
+  games,
+  gameStatus,
+  startGames,
+  updateScoreHome,
+  updateScoreAway,
+}) => {
   return (
     <div>
       <h1>LiveScore</h1>
@@ -12,7 +18,14 @@ const LiveScore = ({ games, gameStatus, startGames }) => {
         <div>
           <h2>Current games</h2>
           {games.map((game) => {
-            return <Game key={game.id} game={game} />;
+            return (
+              <Game
+                key={game.id}
+                game={game}
+                updateScoreAway={updateScoreAway}
+                updateScoreHome={updateScoreHome}
+              />
+            );
           })}
         </div>
       )}

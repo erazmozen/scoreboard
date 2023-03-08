@@ -1,11 +1,15 @@
-function Game({ game }) {
+function Game({ game, updateScoreHome, updateScoreAway }) {
   return (
     <div className="game-wrapper">
       <div className="flex-row">
         <p>{game.teamHome.team}</p>
-        <p>{game.teamHome.score}</p>
+        <p onClick={() => updateScoreHome(game.id)}>
+          {game.teamHome.score}
+        </p>
         <p>vs</p>
-        <p>{game.teamAway.score}</p>
+        <p onClick={() => updateScoreAway(game.id)}>
+          {game.teamAway.score}
+        </p>
         <p>{game.teamAway.team}</p>
       </div>
     </div>
